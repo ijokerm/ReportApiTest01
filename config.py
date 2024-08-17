@@ -11,6 +11,8 @@
 import os
 import requests
 import json
+import time,datetime
+
 # 项目当前目录 --报告生成路径
 base_dir = os.path.dirname(__file__)
 
@@ -34,6 +36,17 @@ curend = requests.get(time_url).json()[3]['end'][0:19]
 startdate = requests.get(time_url).json()[6]['begin'][0:10]
 enddate = requests.get(time_url).json()[6]['end'][0:10]
 
-#
-# print(token)
-print(curbegin)
+# 生成的文件路径：
+now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+# 测试报告路径
+rep_file =  base_dir + '/report/' + now + r'Test01.html'
+# 测试用例路径
+case_file = base_dir + '/case'
+
+now_path = os.path.dirname(os.path.realpath(__file__)) # 获取当前路径
+
+
+log_path = os.path.join(now_path , "../log") # LOG日志存储路径
+print(case_file)
+# print(curbegin)
+

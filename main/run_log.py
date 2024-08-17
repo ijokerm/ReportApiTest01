@@ -38,3 +38,4 @@ def init_log():
     # 将处理器添加到日志器中
     logger.addHandler(sh)
     logger.addHandler(fh)
+

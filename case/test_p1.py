@@ -2,10 +2,11 @@
 # -*- coding: UTF-8 -*-
 """
 @Project ：ReportApiTest01 
-@File    ：case_ddt.py
+@File    ：test_p1.py
 @Author  ：SpringBear
 @Date    ：2024/8/9 17:26
 unittest+ddt 实现用例的封装
+增加日志输出
 """
 import json
 import unittest
@@ -15,6 +16,9 @@ import ddt
 import config
 from common.excel_handle import ExcelHandle
 from common.request_handle import RequestHandle
+import logging
+
+
 
 
 @ddt.ddt
@@ -49,8 +53,7 @@ class Test_Api(unittest.TestCase):
             Test_Api.excel.write_excel("../case/testcase.xlsx",'p1',items['case_id']+1,9,res.status_code)
             #   如果断言成功，则在第10列写入测试结果‘pass’，否则写入‘fail’
             Test_Api.excel.write_excel("../case/testcase.xlsx",'p1',items['case_id']+1,10,result)
-
-
+        logging.info(f"查询条件为员工编号，员工信息查询的结果为：{result}")
 
 if __name__ == '__main__':
     unittest.main()
