@@ -53,7 +53,7 @@ class Test_Api(unittest.TestCase):
             Test_Api.excel.write_excel("../case/testcase.xlsx",'p1',items['case_id']+1,9,res.status_code)
             #   如果断言成功，则在第10列写入测试结果‘pass’，否则写入‘fail’
             Test_Api.excel.write_excel("../case/testcase.xlsx",'p1',items['case_id']+1,10,result)
-        logging.info(f"查询条件为员工编号，员工信息查询的结果为：{result}")
+        logging.info(f"什么垃圾日志打印不出来？？：{result}")
 
 if __name__ == '__main__':
     unittest.main()
