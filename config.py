@@ -50,3 +50,4 @@ log_path = os.path.join(now_path , "../log") # LOG日志存储路径
 print(case_file)
 # print(curbegin)
 
+mailcode = 'VJFDOKCVDJNKMHIV'

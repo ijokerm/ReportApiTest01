@@ -29,17 +29,15 @@ from common import HTMLTestRunner
 now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 now_path = os.path.dirname(os.path.realpath(__file__)) # 获取当前路径
 
+def load_case(casepath= config.case_file,rule="test*.py"):
+    discover = unittest.defaultTestLoader.discover(casepath,pattern=rule)
+    return discover
 
 
 def run_case():
     test_suite = unittest.defaultTestLoader.discover(config.case_file,pattern='test_*.py')
 
     suite = unittest.TestSuite(test_suite)
-
-
-
-    runner = unittest.TextTestRunner()  # 实例化执行器对象
-    runner.run(suite)
 
     runner = TestRunner(suite,  # 测试套件对象
                         filename=config.base_dir + '/report/unittest01.html',  # 测试报告文件
