@@ -56,14 +56,14 @@ def send_email_with_attachment(sender_email, receiver_email, password, attachmen
         print('Failed to send email. Error:', e)
 
 # 使用示例
-send_email_with_attachment(
-    'fivemsbear@163.com',  # 发件人邮箱
-    ['2013099087@qq.com','2574284191@qq.com'],  # 收件人邮箱
-     config.mailcode,  # 发件人邮箱密码
-    '../report/unittest01.html',  # 附件路径
-    'unittest01.html',  # 附件名称
-    '测试邮件发送',  # 邮件主题
-    '测试报告已添加至附件'  # 邮件正文
-)
+# send_email_with_attachment(
+#     'fivemsbear@163.com',  # 发件人邮箱
+#     ['2013099087@qq.com','2574284191@qq.com'],  # 收件人邮箱
+#      config.mailcode,  # 发件人邮箱密码
+#     '../report/unittest01.html',  # 附件路径
+#     'unittest01.html',  # 附件名称
+#     '测试邮件发送',  # 邮件主题
+#     '测试报告已添加至附件'  # 邮件正文
+# )
 
 

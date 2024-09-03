@@ -22,7 +22,7 @@ header ={   "Content-Type": "application/json;charset=UTF-8"          }
 base_url = "https://www.51tagger.com/maxwell-report/"
 
 
-userpwd = {"username":"ckadmin","password":"401155"}
+userpwd = {"username":"ckadmin","password":"666666"}
 res = requests.post(login_url,headers=header,json=userpwd)
 token = res.json()['token']
 cookies = res.cookies
@@ -36,18 +36,15 @@ curend = requests.get(time_url).json()[3]['end'][0:19]
 startdate = requests.get(time_url).json()[6]['begin'][0:10]
 enddate = requests.get(time_url).json()[6]['end'][0:10]
 
-# 生成的文件路径：
-now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-# 测试报告路径
-rep_file =  base_dir + '/report/' + now + r'Test01.html'
-# 测试用例路径
-case_file = base_dir + '/case'
+# 生成的文件路径：文件路径配置
+# 测试用例数据文件
+CASE_FILE = os.path.join(base_dir,'case','testcase.xlsx')
+# 测试用例文件
+TEST_CASE = os.path.join(base_dir,'case')
+# log文件路径
+LOG_PATH = os.path.join(base_dir,'log','testlog.log')
+# 测试报告文件路径
+TEST_REPORT = os.path.join(base_dir,"report")
 
-now_path = os.path.dirname(os.path.realpath(__file__)) # 获取当前路径
-
-
-log_path = os.path.join(now_path , "../log") # LOG日志存储路径
-print(case_file)
-# print(curbegin)
-
+# 163邮箱授权码
 mailcode = 'VJFDOKCVDJNKMHIV'

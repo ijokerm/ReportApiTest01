@@ -16,39 +16,51 @@ import time,datetime
 import logging
 from logging import handlers
 from unittestreport import TestRunner
-from common import HTMLTestRunner
-
+from BeautifulReport import BeautifulReport
+from common.send_mail import send_email_with_attachment
 """
- 7     通过该类defaultTestLoader下面的discover()方法
- 8     可自动更具测试目录start_dir匹配查找测试用例文件（test*.py），
- 9     并将查找到的测试用例组装到测试套件
-10     """
+通过该类defaultTestLoader下面的discover()方法，可自动更具测试目录start_dir匹配查找测试用例文件（test*.py），
+并将查找到的测试用例组装到测试套件
+"""
 
 
 
 now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 now_path = os.path.dirname(os.path.realpath(__file__)) # 获取当前路径
 
-def load_case(casepath= config.case_file,rule="test*.py"):
-    discover = unittest.defaultTestLoader.discover(casepath,pattern=rule)
-    return discover
+
 
 
 def run_case():
-    test_suite = unittest.defaultTestLoader.discover(config.case_file,pattern='test_*.py')
+    # 测试报告
+    test_suite = unittest.defaultTestLoader.discover(config.TEST_CASE,pattern='test_*.py')
+    result = BeautifulReport(test_suite)
+    result.report(filename='测试报告', description='接口自动化测试报告', report_dir='./report')
+#LOG日志记录
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                        datefmt='%a, %d %b %Y %H:%M:%S',
+                        filename= config.LOG_PATH ,
+                        filemode='w')
+    logger = logging.getLogger()
+    logger.info(test_suite)
 
-    suite = unittest.TestSuite(test_suite)
+    send_email_with_attachment(
+        'fivemsbear@163.com',  # 发件人邮箱
+        ['2013099087@qq.com', '2574284191@qq.com'],  # 收件人邮箱
+        config.mailcode,  # 发件人邮箱密码
+        config.TEST_REPORT + './测试报告.html',  # 附件路径
+        '测试报告.html',  # 附件名称
+        '测试邮件发送',  # 邮件主题
+        '测试报告已添加至附件'  # 邮件正文
+    )
 
-    runner = TestRunner(suite,  # 测试套件对象
-                        filename=config.base_dir + '/report/unittest01.html',  # 测试报告文件
-                        title="测试框架是否可行",
-                        tester="春天的熊",
-                        desc="V1.0",
-                        templates=1)  # 报告的模板
 
 
 
-    runner.run()
+
+
+
 
 if __name__ == '__main__':
     run_case()
