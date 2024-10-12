@@ -12,14 +12,15 @@ import os
 import requests
 import json
 import time,datetime
+import datetime
 
 # 项目当前目录 --报告生成路径
 base_dir = os.path.dirname(__file__)
 
 # 请求头管理
-login_url = 'https://www.51tagger.com/maxwell-report/rest/login'
+login_url = 'https://sh.51tagger.com/maxwell-report/rest/login'
 header ={   "Content-Type": "application/json;charset=UTF-8"          }
-base_url = "https://www.51tagger.com/maxwell-report/"
+base_url = "https://sh.51tagger.com/maxwell-report/"
 
 
 userpwd = {"username":"ckadmin","password":"666666"}
@@ -28,10 +29,18 @@ token = res.json()['token']
 cookies = res.cookies
 
 # 时间组件接口
-time_url = 'https://www.51tagger.com/maxwell-report/data-api/1/picker-options'
-# 当前班次时间
-curbegin = requests.get(time_url).json()[3]['begin'][0:19]
-curend = requests.get(time_url).json()[3]['end'][0:19]
+time_url = 'https://sh.51tagger.com/maxwell-report/data-api/1/picker-options'
+
+
+begin = requests.get(time_url).json()[3]['begin'][0:19]
+
+end = requests.get(time_url).json()[3]['end'][0:19]
+# #当前白班次时间
+# daybegin = datetime.datetime.now().strftime('%Y-%m-%d') + ' ' + begin
+# dayend = datetime.datetime.now().strftime('%Y-%m-%d') + ' ' + end
+# # 夜班班次时间
+#
+# nightend = (datetime.datetime.now()+ datetime.timedelta(days = +1)).strftime('%Y-%m-%d')+ ' ' + begin
 # 日期
 startdate = requests.get(time_url).json()[6]['begin'][0:10]
 enddate = requests.get(time_url).json()[6]['end'][0:10]
@@ -48,3 +57,5 @@ TEST_REPORT = os.path.join(base_dir,"report")
 
 # 163邮箱授权码
 mailcode = 'VJFDOKCVDJNKMHIV'
+
+print(begin,startdate)

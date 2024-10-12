@@ -26,6 +26,10 @@ class Test_Api(unittest.TestCase):
     # 读取测试用例excel的数据
     excel = ExcelHandle(config.CASE_FILE)
     case_data = excel.read_excel('p2')
+    params_dict = {
+        '${begintime}': config.begin,
+        '${endtime}': config.end
+    }
 
     def setUp(self) -> None:
         self.req = RequestHandle()
@@ -47,6 +51,7 @@ class Test_Api(unittest.TestCase):
         self.body = eval(items['payload'])
         self.actual_result = items['actual_result']  # 提取字段
         self.test_result = items["test_result"]  # 获取excel表格数据的状态码
+        self.query = items["sql"]
         try:
             #   断言：预期结果与实际结果对比
             self.assertEqual(res.status_code,items['expect_result'])

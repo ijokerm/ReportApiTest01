@@ -56,8 +56,8 @@ class ExcelHandle:
 
 if __name__ == '__main__':
     ces = ExcelHandle('../case/testcase.xlsx')
-    data = ces.read_excel('p1')
-    print(data)
+    data = ces.read_excel('p2')
+    print(data[0]['payload'])
 
 
 
