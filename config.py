@@ -48,6 +48,8 @@ enddate = requests.get(time_url).json()[6]['end'][0:10]
 # 生成的文件路径：文件路径配置
 # 测试用例数据文件
 CASE_FILE = os.path.join(base_dir,'case','testcase.xlsx')
+CASE2_FILE = os.path.join(base_dir,'case','testcase2.xlsx')
+
 # 测试用例文件
 TEST_CASE = os.path.join(base_dir,'case')
 # log文件路径

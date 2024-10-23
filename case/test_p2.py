@@ -16,6 +16,7 @@ import ddt
 import config
 from common.excel_handle import ExcelHandle
 from common.request_handle import RequestHandle
+from common.readexcel import replace_excel_parameters
 import logging
 
 
@@ -24,12 +25,19 @@ import logging
 @ddt.ddt
 class Test_Api(unittest.TestCase):
     # 读取测试用例excel的数据
-    excel = ExcelHandle(config.CASE_FILE)
-    case_data = excel.read_excel('p2')
-    params_dict = {
+    parameters_to_replace = {
         '${begintime}': config.begin,
         '${endtime}': config.end
     }
+
+    input_excel_path = config.CASE_FILE
+    output_excel_path = config.CASE2_FILE
+    sheet_name = 'p2'
+    replace_excel_parameters(input_excel_path, sheet_name, parameters_to_replace, output_excel_path)
+
+    excel = ExcelHandle(config.CASE2_FILE)
+    case_data = excel.read_excel('p2')
+
 
     def setUp(self) -> None:
         self.req = RequestHandle()
