@@ -25,7 +25,7 @@ import logging
 class Test_Api(unittest.TestCase):
     # 读取测试用例excel的数据
     excel = ExcelHandle(config.CASE_FILE)
-    case_data = excel.read_excel('p2')
+    case_data = excel.read_excel('p1')
 
     def setUp(self) -> None:
         self.req = RequestHandle()
