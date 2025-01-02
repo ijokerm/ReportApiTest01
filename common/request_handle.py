@@ -8,6 +8,7 @@
 """
 
 import requests
+import config
 class RequestHandle:
     def __init__(self):
         """session管理器"""
@@ -20,5 +21,7 @@ class RequestHandle:
         """关闭session"""
         self.session.close()
 
-# if __name__ == '__main__':
-
+if __name__ == '__main__':
+    login = RequestHandle().visit('post', config.login_url, json=config.userpwd, headers=config.header)
+    token = login.json().get('token')
+    print(f'Bearer {token}')

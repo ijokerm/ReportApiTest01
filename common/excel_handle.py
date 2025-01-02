@@ -55,9 +55,9 @@ class ExcelHandle:
         wb.close()
 
 if __name__ == '__main__':
-    ces = ExcelHandle('../case/testcase.xlsx')
+    ces = ExcelHandle('../case/testcase2.xlsx')
     data = ces.read_excel('p2')
-    print(data[0]['payload'])
+    print(type(data[0]['payload']))
 
 
 

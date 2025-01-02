@@ -60,4 +60,4 @@ TEST_REPORT = os.path.join(base_dir,"report")
 # 163邮箱授权码
 mailcode = 'VJFDOKCVDJNKMHIV'
 
-print(begin,startdate)
+# print(begin)
